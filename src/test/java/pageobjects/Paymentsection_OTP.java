@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class Paymentsection_OTP {
 	WebDriver driver;
@@ -29,15 +30,23 @@ public class Paymentsection_OTP {
 	@FindBy(xpath="//button[@name='ok']")
 	@CacheLookup
 	WebElement btnOk;
+	
+	@FindBy(xpath="//*[@class='trans-status trans-success']/span[1]")
+	@CacheLookup
+	WebElement weSuccessfullTransmsg;
 
-	public void enterOTPdetails(double  BankOTP) throws InterruptedException{
+	public void enterOTPdetails(String BankOTP) throws InterruptedException{
 
 		Thread.sleep(5000);
 		driver.switchTo().frame(frameOTPPaymentSection);
 		Thread.sleep(5000);
-		inputPassword.click();
-		System.out.println(BankOTP);
-		inputPassword.sendKeys(String.valueOf(BankOTP));
-		btnOk.click();
+		inputPassword.click();		
+		inputPassword.sendKeys(BankOTP);
+		btnOk.click();		
+		driver.switchTo().defaultContent();
+		WebDriverWait wd= new WebDriverWait(driver, 60);		
+		wd.until(ExpectedConditions.visibilityOf(weSuccessfullTransmsg));			
+		Assert.assertEquals(weSuccessfullTransmsg.getText().trim(), "Thank you for your purchase.");
+		
 	}
 }

@@ -1,7 +1,5 @@
 package pageobjects;
 
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -24,14 +22,13 @@ public class OrderSummary {
 	@CacheLookup
 	WebElement btnOrderSummaryContinue;
 	
-	public void fnOrderSummary() {
-		
+	public void fnOrderSummary() {		
 		driver.switchTo().frame("snap-midtrans");		
 		WebDriverWait wd= new WebDriverWait(driver, 60);
 		wd.until(ExpectedConditions.elementToBeClickable(titleOrderSummary));
 		Assert.assertEquals("Order Summary",titleOrderSummary.getText().trim(),"Successfully dispalyed");
 		btnOrderSummaryContinue.click();
-	
+		Assert.assertTrue(true);
 	}
 	
 }

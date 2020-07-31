@@ -6,6 +6,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class Paymentsection {
 	WebDriver driver;
@@ -35,12 +36,11 @@ public class Paymentsection {
 	
 	public void enterCCdetails(String CCNumber,String CCExpirydate,double  CCcvvNumber){
 		WebDriverWait wd= new WebDriverWait(driver, 60);
-		wd.until(ExpectedConditions.elementToBeClickable(titlePaymentSection));
-		System.out.println(CCNumber);
+		wd.until(ExpectedConditions.elementToBeClickable(titlePaymentSection));		
 		inputCardNumber.sendKeys(String.valueOf(CCNumber));
 		inputExpiryDate.sendKeys(CCExpirydate);
 		inputCVV.sendKeys(String.valueOf(CCcvvNumber));	
 		btnPayNow.click();
-		
+		Assert.assertTrue(true);
 	}
 }

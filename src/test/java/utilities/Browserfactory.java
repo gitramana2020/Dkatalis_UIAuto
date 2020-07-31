@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Browserfactory {
 
-	public static WebDriver OpenApplication(WebDriver driver,String BrowserName, String URL) {
+	public static WebDriver OpenApplication(WebDriver driver,String BrowserName, String URL) throws InterruptedException {
 
 		if(BrowserName.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver");
@@ -27,7 +27,7 @@ public class Browserfactory {
 	}
 
 	public static void QuitBrowser(WebDriver driver) throws InterruptedException {
-		Thread.sleep(10000);
-//		driver.quit();
+		Thread.sleep(5000);
+		driver.quit();
 	}
 }

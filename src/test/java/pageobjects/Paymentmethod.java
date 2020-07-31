@@ -6,6 +6,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class Paymentmethod {
 	WebDriver driver;
@@ -23,8 +24,8 @@ public class Paymentmethod {
 	public void clickonCrediCardPAyment() throws InterruptedException {
 		WebDriverWait wd= new WebDriverWait(driver, 60);
 		wd.until(ExpectedConditions.elementToBeClickable(titlePaymentSection));
+		Assert.assertTrue(driver.getPageSource().contains("Select Payment"));
 		lnkCeditCardPAyment.click();
-		
-		
+		Assert.assertTrue(true);		
 	}
 }
